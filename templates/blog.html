@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+
+{% block title %}
+Блог
+{% endblock %}
+
+{% block body %}
+
+{% for post in pages.items %}
+<div class="alert alert-info">
+    <h2>{{ post.title }}</h2>
+    <p>{{ post.intro }}</p>
+    <p><b>Дата публикации: {{ post.date.date() }}</b></p>
+    <a href="/posts/{{ post.id }}" class="btn btn-warning">Детальнее</a>
+</div>
+{% endfor %}
+<nav>
+    <ul class="pagination pagination">
+        {% for page in pages.iter_pages() %}
+            <li {% if page == pages.page %} class="page-item active" {% else %} class="page-item" {% endif %}>
+                <a class="page-link" href="./blog?page={{ page }}">{{ page }}</a>
+            </li>
+        {% endfor %}
+    </ul>
+</nav>
+{% endblock %}
