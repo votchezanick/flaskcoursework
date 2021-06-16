@@ -1,26 +1,36 @@
 {% extends 'base.html' %}
 
+
 {% block title %}
 Блог
 {% endblock %}
 
-{% block body %}
 
-{% for post in pages.items %}
-<div class="alert alert-info">
-    <h2>{{ post.title }}</h2>
-    <p>{{ post.intro }}</p>
-    <p><b>Дата публикации: {{ post.date.date() }}</b></p>
-    <a href="/posts/{{ post.id }}" class="btn btn-warning">Детальнее</a>
+{% block body %}
+<div class="row align-items-md-stretch">
+    {% for post in pages.items %}
+    <div class="col-md-6">
+        <div class="h-100 p-5 bg-light border rounded-3">
+            <div class="tags">
+                {% for tag in tags %}
+                    <a href="{{ url_for('tag_detail', slug=tag.slug) }}"><span class="badge bg-secondary">{{ tag.name }}</span></a>
+                {% endfor %}
+            </div>
+            <h2>{{ post.title }}</h2>
+            <p>{{ post.intro }}</p>
+            <p><b>{{ post.date.date() }}</b></p>
+            <button class="btn btn-outline-secondary" type="button"><a href="/posts/{{ post.id }}">Продолжить чтение</a></button>
+        </div>
+    </div>
+    {% endfor %}
 </div>
-{% endfor %}
-<nav>
+<div class="pag">
     <ul class="pagination pagination">
         {% for page in pages.iter_pages() %}
-            <li {% if page == pages.page %} class="page-item active" {% else %} class="page-item" {% endif %}>
-                <a class="page-link" href="./blog?page={{ page }}">{{ page }}</a>
-            </li>
+        <li {% if page == pages.page %} class="page-item active" {% else %} class="page-item" {% endif %}>
+            <a class="page-link" href="./blog?page={{ page }}">{{ page }}</a>
+        </li>
         {% endfor %}
     </ul>
-</nav>
+</div>
 {% endblock %}

@@ -1,3 +1,24 @@
 .container, .container-fluid, .container-lg, .container-md, .container-sm, .container-xl, .container-xxl {
     margin-top: 10px;
 }
+
+.align-items-md-stretch {
+    align-items: stretch!important;
+}
+
+a {
+    text-decoration: none;
+    color: black;
+}
+
+a:visited {
+    color: black;
+}
+
+a:active {
+    color: black;
+}
+
+.pag {
+    margin: 2%;
+}

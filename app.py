@@ -101,7 +101,7 @@ def blog():
     else:
         posts = Post.query.order_by(Post.date.desc()) #.all()
 
-    pages = posts.paginate(page=page, per_page=3)
+    pages = posts.paginate(page=page, per_page=2)
 
     return render_template("blog.html", posts=posts, pages=pages)
 
