@@ -7,7 +7,6 @@ from datetime import datetime
 from flask_admin import Admin, AdminIndexView
 from flask_admin.contrib.sqla import ModelView
 from flask_security import UserMixin, RoleMixin, SQLAlchemyUserDatastore, Security, login_required, current_user
-import email_validator
 
 
 app = Flask(__name__)

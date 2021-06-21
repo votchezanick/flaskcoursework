@@ -15,8 +15,8 @@
         </div>
         <p>{{ post.body }}</p>
         <p><b>Дата публикации: {{ post.date.date() }}</b></p>
-        <a href="/posts/{{ post.id }}/update" class="btn btn-success">Редактировать</a>
-        <a href="/posts/{{ post.id }}/delete" class="btn btn-danger">Удалить</a>
+        {% if current_user.has_role('admin') %}<a href="/posts/{{ post.id }}/update" class="btn btn-success">Редактировать</a>{% endif %}
+        {% if current_user.has_role('admin') %}<a href="/posts/{{ post.id }}/delete" class="btn btn-danger">Удалить</a>{% endif %}
     </div>
 </div>
 {% endblock %}
